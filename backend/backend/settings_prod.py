@@ -30,7 +30,7 @@ SECRET_KEY = config["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['modeling.bio-groups.com']
+ALLOWED_HOSTS = ['printing.bio-groups.com']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -41,8 +41,8 @@ REST_FRAMEWORK = {
     # )
 }
 
-DOMAIN = 'modeling.bio-groups.com'
-SITE_NAME = 'modeling.bio-groups'
+DOMAIN = 'printing.bio-groups.com'
+SITE_NAME = 'printing.bio-groups'
 TEAM = 'bio-groups'
 
 DJOSER = {
@@ -125,7 +125,7 @@ USERS_DB = 'users'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'modeling',
+       'NAME': 'printing',
        'USER': config.get('DB_USER'),
        'PASSWORD': config.get('DB_PASS'),
        'HOST': 'localhost',
