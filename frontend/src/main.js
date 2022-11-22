@@ -14,6 +14,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'mosha-vue-toastify/dist/style.css'
 
 const pinia = createPinia()
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://modeling.bio-groups.com' : 'http://127.0.0.1:8000'
+axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://printing.bio-groups.com' : 'http://127.0.0.1:8000'
 
 createApp(App).use(pinia).use(router, axios).mount('#app')

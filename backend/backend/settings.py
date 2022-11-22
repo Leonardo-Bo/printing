@@ -38,7 +38,7 @@ REST_FRAMEWORK = {
 }
 
 DOMAIN = '127.0.0.1:8000'
-SITE_NAME = 'modeling.bio-groups'
+SITE_NAME = 'printing.bio-groups'
 TEAM = 'bio-groups'
 
 DJOSER = {
@@ -121,7 +121,7 @@ USERS_DB = 'users'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'modeling_dev',
+       'NAME': 'printing_dev',
        'USER': os.environ.get('DB_USER'),
        'PASSWORD': os.environ.get('DB_PASS'),
        'HOST': 'localhost',
