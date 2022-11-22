@@ -1,0 +1,49 @@
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.conf import settings
+
+from .models import User
+
+
+class CUserAdmin(UserAdmin):
+    using = settings.USERS_DB
+
+    def save_model(self, request, obj, form, change):
+        # Tell Django to save objects to the 'other' database.
+        obj.save(using=self.using)
+
+    def delete_model(self, request, obj):
+        # Tell Django to delete objects from the 'other' database
+        obj.delete(using=self.using)
+
+    def get_queryset(self, request):
+        # Tell Django to look for objects on the 'other' database.
+        return super().get_queryset(request).using(self.using)
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        # Tell Django to populate ForeignKey widgets using a query
+        # on the 'other' database.
+        return super().formfield_for_foreignkey(db_field, request, using=self.using, **kwargs)
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        # Tell Django to populate ManyToMany widgets using a query
+        # on the 'other' database.
+        return super().formfield_for_manytomany(db_field, request, using=self.using, **kwargs)
+
+    model = User
+    list_display = ('username', 'email', 'is_staff', 'is_active',)
+    list_filter = ('username', 'email', 'is_staff', 'is_active',)
+    fieldsets = (
+        (None, {'fields': ('username', 'email', 'password', 'full_name')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_admin')}), 
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'email', 'full_name', 'password1', 'password2', 'is_staff', 'is_active', 'is_admin')}
+        ),
+    )
+    search_fields = ('username', 'email',)
+    ordering = ('username', 'email',)
+
+admin.site.register(User, CUserAdmin)
