@@ -31,6 +31,7 @@ SECRET_KEY = config["SECRET_KEY"]
 DEBUG = False
 
 ALLOWED_HOSTS = ['printing.bio-groups.com']
+CSRF_TRUSTED_ORIGINS=['https://printing.bio-groups.com']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
