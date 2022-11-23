@@ -199,4 +199,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config.get('EMAIL_SYSTEM')
 EMAIL_HOST_PASSWORD = config.get('EMAIL_PASS')
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'ssl0.ovh.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config.get('EMAIL_SYSTEM')
+EMAIL_HOST_PASSWORD = config.get('EMAIL_PASS')
+DEFAULT_FROM_EMAIL = config.get('EMAIL_SYSTEM')
+
 ADMINS = ((os.environ.get('USER_ADMIN'), os.environ.get('EMAIL_ADMIN')), )
