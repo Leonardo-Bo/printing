@@ -128,7 +128,7 @@ DATABASES = {
        'NAME': 'printing',
        'USER': config.get('DB_USER'),
        'PASSWORD': config.get('DB_PASS'),
-       'HOST': 'postgres-biogroup',
+       'HOST': '10.10.10.10',
        'PORT':'',
    },
    USERS_DB: {
@@ -136,7 +136,7 @@ DATABASES = {
        'NAME': 'printing_users',
        'USER': config.get('DB_USER'),
        'PASSWORD': config.get('DB_PASS'),
-       'HOST': 'postgres-biogroup',
+       'HOST': '10.10.10.10',
        'PORT':'',
    },
 }
