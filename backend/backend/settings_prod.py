@@ -128,16 +128,16 @@ DATABASES = {
        'NAME': 'printing',
        'USER': config.get('DB_USER'),
        'PASSWORD': config.get('DB_PASS'),
-       'HOST': 'localhost',
-       'PORT':'5432',
+       'HOST': 'postgres-biogroup',
+       'PORT':'',
    },
    USERS_DB: {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'users_biogroups',
+       'NAME': 'printing_users',
        'USER': config.get('DB_USER'),
        'PASSWORD': config.get('DB_PASS'),
-       'HOST': 'localhost',
-       'PORT':'5432',
+       'HOST': 'postgres-biogroup',
+       'PORT':'',
    },
 }
 
