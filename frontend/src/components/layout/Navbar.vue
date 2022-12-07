@@ -346,7 +346,12 @@ const logout = () => {
     .router-link-exact-active {
         font-size: 14px;
         margin: 0;
-        background-color: lightgray;
+        background-color: #eee;
+    }
+    .nav-link {
+        font-size: 25px;
+        padding-top: 5px;
+        padding-bottom: 5px; 
     }
 }
 

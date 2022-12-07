@@ -9,7 +9,7 @@ class Publication(models.Model):
     authors = models.CharField(max_length=255)
     magazine = models.CharField(max_length=255)
     year = models.CharField(max_length=255)
-    doi = models.CharField(max_length=255)
+    doi = models.CharField(max_length=255, blank=True, null=True)
     link = models.CharField(max_length=255, blank=True, null=True)
     bibtex = models.TextField(blank=True, null=True)
     corresponding = models.CharField(max_length=255, blank=True, null=True)
