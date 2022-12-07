@@ -41,7 +41,7 @@
                         {{ p.title }}
                     </div> 
                     <div>
-                        <em>{{ p.magazine }}</em> &mdash; {{ p.year }} &mdash; {{ p.doi }} 
+                        <em>{{ p.magazine }}</em> &mdash; {{ p.year }} <template v-if="p.doi">&mdash; {{ p.doi }}</template> 
                     </div>
                     
                     
@@ -53,8 +53,8 @@
                     </span> 
                     
                     <span class="ms-1 me-1" v-show="p.pdf && p.link">&mdash;</span>
-                    <span class="ms-1 me-1" v-show="p.pdf && p.bibtex">&mdash;</span>
-                    <span class="ms-1 me-1" v-show="p.pdf && p.corresponding">&mdash;</span>
+                    <span class="ms-1 me-1" v-show="(p.pdf && p.bibtex && !p.link)">&mdash;</span>
+                    <span class="ms-1 me-1" v-show="(p.pdf && p.corresponding && !p.link && !p.bibtex)">&mdash;</span>
                     
                     <span v-show="p.link"> 
                         <a :href="p.link" target="_blank">
@@ -63,8 +63,8 @@
                         </a> 
                     </span>
 
-                    <span class="ms-1 me-1" v-show="p.link && p.bibtex">&mdash;</span>
-                    <span class="ms-1 me-1" v-show="p.link && p.corresponding">&mdash;</span>
+                    <span class="ms-1 me-1" v-show="(p.link && p.bibtex)">&mdash;</span>
+                    <span class="ms-1 me-1" v-show="(p.link && p.corresponding && !p.bibtex)">&mdash;</span>
 
                     <span v-show="p.bibtex">
                         <abbr title="Copy BibTeX" @click="copyBibtex(p.bibtex)">

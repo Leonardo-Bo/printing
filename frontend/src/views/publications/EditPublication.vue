@@ -40,7 +40,7 @@
 
                 <div class="col-md-5">
                     <div class="form-group mb-3">
-                        <label class="mb-1">DOI*</label>
+                        <label class="mb-1">DOI</label>
                         <input
                             type="text"
                             class="form-control"
@@ -52,7 +52,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group mb-3">
-                        <label class="mb-1">Year*</label>
+                        <label class="mb-1">Year* <small style="font-size:10px;">(es. Jan 2000)</small></label>
                         <input
                             type="text"
                             class="form-control"
