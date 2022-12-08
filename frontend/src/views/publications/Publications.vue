@@ -1,10 +1,39 @@
 <template>
     <div class="publication-container">
-        <div class="row justify-content-between">
-            <div class="col col-md-4">
+        <div class="monitor-view">
+            <div class="row justify-content-between">
+                <div class="col col-md-4">
+                    <h4 class="head-title">Publications</h4>
+                </div>
+                <div class="col col-md-5">
+                    <div class="multiselect-container">
+                        <Multiselect
+                            v-model="relatedFieldsSelector.value"
+                            v-bind="relatedFieldsSelector"
+                            placeholder="Show publications by research field"
+                            class="multiselect-blue"
+                        >
+                            <template v-slot:multiplelabel="{ values }">
+                                <div class="multiselect-multiple-label">
+                                    <template v-if="values.length==1">
+                                        {{ values[0].label }}    
+                                    </template>
+                                    <template v-else>
+                                        {{ values.length }} research fields selected
+                                    </template>
+                                </div>
+                            </template>
+                        </Multiselect>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="mobile-view">
+            <div>
                 <h4 class="head-title">Publications</h4>
             </div>
-            <div class="col col-md-4">
+            <div>
                 <div class="multiselect-container">
                     <Multiselect
                         v-model="relatedFieldsSelector.value"
@@ -44,47 +73,88 @@
                         <em>{{ p.magazine }}</em> &mdash; {{ p.year }} <template v-if="p.doi">&mdash; {{ p.doi }}</template> 
                     </div>
                     
-                    
-                    <span v-show="p.pdf">
-                        <a :href="p.pdf" target="_blank">
-                            <i class="bi bi-file-pdf text-danger me-1"></i>
-                            <strong class="text-dark">PDF</strong>
-                        </a>
-                    </span> 
-                    
-                    <span class="ms-1 me-1" v-show="p.pdf && p.link">&mdash;</span>
-                    <span class="ms-1 me-1" v-show="(p.pdf && p.bibtex && !p.link)">&mdash;</span>
-                    <span class="ms-1 me-1" v-show="(p.pdf && p.corresponding && !p.link && !p.bibtex)">&mdash;</span>
-                    
-                    <span v-show="p.link"> 
-                        <a :href="p.link" target="_blank">
-                            <i class="bi bi-link-45deg text-danger me-1"></i>
-                            <strong class="text-dark">Link</strong>
-                        </a> 
-                    </span>
+                    <div class="monitor-view">
+                        <span v-show="p.pdf">
+                            <a :href="p.pdf" target="_blank">
+                                <i class="bi bi-file-pdf text-danger me-1"></i>
+                                <strong class="text-dark">PDF</strong>
+                            </a>
+                        </span> 
+                        
+                        <span class="ms-1 me-1" v-show="p.pdf && p.link">&mdash;</span>
+                        <span class="ms-1 me-1" v-show="(p.pdf && p.bibtex && !p.link)">&mdash;</span>
+                        <span class="ms-1 me-1" v-show="(p.pdf && p.corresponding && !p.link && !p.bibtex)">&mdash;</span>
+                        
+                        <span v-show="p.link"> 
+                            <a :href="p.link" target="_blank">
+                                <i class="bi bi-link-45deg text-danger me-1"></i>
+                                <strong class="text-dark">Link</strong>
+                            </a> 
+                        </span>
 
-                    <span class="ms-1 me-1" v-show="(p.link && p.bibtex)">&mdash;</span>
-                    <span class="ms-1 me-1" v-show="(p.link && p.corresponding && !p.bibtex)">&mdash;</span>
+                        <span class="ms-1 me-1" v-show="(p.link && p.bibtex)">&mdash;</span>
+                        <span class="ms-1 me-1" v-show="(p.link && p.corresponding && !p.bibtex)">&mdash;</span>
 
-                    <span v-show="p.bibtex">
-                        <abbr title="Copy BibTeX" @click="copyBibtex(p.bibtex)">
-                            <i  
-                                class="bi bi-file-code text-danger me-1">
-                            </i>
-                            <strong class="text-dark">BibTeX</strong>
-                        </abbr>
-                    </span>
+                        <span v-show="p.bibtex">
+                            <abbr title="Copy BibTeX" @click="copyBibtex(p.bibtex)">
+                                <i  
+                                    class="bi bi-file-code text-danger me-1">
+                                </i>
+                                <strong class="text-dark">BibTeX</strong>
+                            </abbr>
+                        </span>
 
-                    <span class="ms-1 me-1" v-show="p.bibtex && p.corresponding">&mdash;</span>
+                        <span class="ms-1 me-1" v-show="p.bibtex && p.corresponding">&mdash;</span>
 
-                    <span v-show="p.corresponding">
-                        <abbr title="Copy Corresponding Author Email" @click="copyEmail(p.corresponding)">
-                            <i 
-                                class="bi bi-envelope text-danger me-1">
-                            </i> 
-                            <strong class="text-dark">{{ p.corresponding }}</strong>
-                        </abbr>
-                    </span>
+                        <span v-show="p.corresponding">
+                            <abbr title="Copy Corresponding Author Email" @click="copyEmail(p.corresponding)">
+                                <i 
+                                    class="bi bi-envelope text-danger me-1">
+                                </i> 
+                                <strong class="text-dark">{{ p.corresponding }}</strong>
+                            </abbr>
+                        </span>
+                    </div>
+                    <div class="mobile-view">
+                        <div>
+                            <span v-show="p.pdf">
+                                <a :href="p.pdf" target="_blank">
+                                    <i class="bi bi-file-pdf text-danger me-1"></i>
+                                    <strong class="text-dark">PDF</strong>
+                                </a>
+                            </span> 
+                            
+                            <span class="ms-1 me-1" v-show="p.pdf && p.link">&mdash;</span>
+                            
+                            <span v-show="p.link"> 
+                                <a :href="p.link" target="_blank">
+                                    <i class="bi bi-link-45deg text-danger me-1"></i>
+                                    <strong class="text-dark">Link</strong>
+                                </a> 
+                            </span>
+                        </div>
+                        <div>
+                            <span v-show="p.bibtex">
+                                <abbr title="Copy BibTeX" @click="copyBibtex(p.bibtex)">
+                                    <i  
+                                        class="bi bi-file-code text-danger me-1">
+                                    </i>
+                                    <strong class="text-dark">BibTeX</strong>
+                                </abbr>
+                            </span>
+
+                            <span class="ms-1 me-1" v-show="p.bibtex && p.corresponding">&mdash;</span>
+
+                            <span v-show="p.corresponding">
+                                <abbr title="Copy Corresponding Author Email" @click="copyEmail(p.corresponding)">
+                                    <i 
+                                        class="bi bi-envelope text-danger me-1">
+                                    </i> 
+                                    <strong class="text-dark">{{ p.corresponding }}</strong>
+                                </abbr>
+                            </span>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -441,6 +511,21 @@ a, abbr {
         --ms-option-font-size: 12px;
         padding: 10px 1px 10px 1px;
         z-index: 2;
+    }
+}
+
+@media screen and (max-width: 914px) {
+    .monitor-view {
+        display: none;
+    }
+    .pub-block {
+        margin-left: 0px;
+    }
+}
+
+@media screen and (min-width: 915px) {
+    .mobile-view {
+        display: none;
     }
 }
 </style>
