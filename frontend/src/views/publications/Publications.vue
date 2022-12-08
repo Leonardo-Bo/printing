@@ -125,6 +125,7 @@
                             </span> 
                             
                             <span class="ms-1 me-1" v-show="p.pdf && p.link">&mdash;</span>
+                            <span class="ms-1 me-1" v-show="(p.pdf && p.bibtex && !p.link)">&mdash;</span>
                             
                             <span v-show="p.link"> 
                                 <a :href="p.link" target="_blank">
@@ -132,8 +133,9 @@
                                     <strong class="text-dark">Link</strong>
                                 </a> 
                             </span>
-                        </div>
-                        <div>
+
+                            <span class="ms-1 me-1" v-show="(p.link && p.bibtex)">&mdash;</span>
+                            
                             <span v-show="p.bibtex">
                                 <abbr title="Copy BibTeX" @click="copyBibtex(p.bibtex)">
                                     <i  
@@ -142,9 +144,8 @@
                                     <strong class="text-dark">BibTeX</strong>
                                 </abbr>
                             </span>
-
-                            <span class="ms-1 me-1" v-show="p.bibtex && p.corresponding">&mdash;</span>
-
+                        </div>
+                        <div>
                             <span v-show="p.corresponding">
                                 <abbr title="Copy Corresponding Author Email" @click="copyEmail(p.corresponding)">
                                     <i 
@@ -152,7 +153,7 @@
                                     </i> 
                                     <strong class="text-dark">{{ p.corresponding }}</strong>
                                 </abbr>
-                            </span>
+                            </span>    
                         </div>
                     </div>
 
