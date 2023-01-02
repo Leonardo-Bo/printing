@@ -15,7 +15,7 @@
                     <!-- </span> -->
                 </div>
 
-                <div style="text-align: justify;" v-html="news.contentMD"></div>
+                <div class="md-content" v-html="news.contentMD"></div>
             </template>
             <template v-else>
                 <span style="font-size: 20px;">
@@ -75,7 +75,7 @@ const formatDate = (value) => {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 @media screen and (min-width: 279px) and (max-width: 769px) {
     .news-container {
         margin-top: 60px;
@@ -107,5 +107,14 @@ const formatDate = (value) => {
         padding-bottom: 5px;
     }
 
+}
+
+.md-content {
+	text-align: justify;
+	&:deep(p) {
+		hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+	}
 }
 </style>

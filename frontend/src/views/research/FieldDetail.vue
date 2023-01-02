@@ -2,7 +2,7 @@
     <div class="field-container">
         <template v-if="isField">
             <h2 class="mb-3">{{ field.title }}</h2>
-            <div style="text-align: justify;" v-html="field.contentMD"></div>
+            <div class="md-content" v-html="field.contentMD"></div>
         </template>
         <template v-else>
             <span style="font-size: 20px;">
@@ -53,6 +53,15 @@ onMounted(() => {
 .field-container {
     margin-top: 60px;
     margin-bottom: 100px;
+}
+
+.md-content {
+	text-align: justify;
+	&:deep(p) {
+		hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+	}
 }
 
 @media screen and (min-width: 279px) and (max-width: 769px) {

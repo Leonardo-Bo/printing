@@ -16,13 +16,8 @@
             </div>
 
             <div class="form-group mb-3">
-                <label class="mb-1">Authors*</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    style="font-size: 14px"
-                    id="authors"
-                    v-model="publication_copy.authors">
+                <label class="mb-1">Authors* <small style="font-size:10px;">(comma separated list of full names)</small></label>
+                <textarea rows="2" style="font-size: 14px" class="form-control" v-model="publication_copy.authors"></textarea>
             </div>
 
             <div class="row">
@@ -67,7 +62,7 @@
                 <div class="col md-6">
 
                     <div class="form-group mb-3">
-                        <label class="mb-1">Corresponding Author</label>
+                        <label class="mb-1">Corresponding Author <small style="font-size:10px;">(email)</small></label>
                         <input
                             type="text"
                             class="form-control"

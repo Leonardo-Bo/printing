@@ -5,8 +5,8 @@ from apps.research.models import ResearchField
 
 
 class Publication(models.Model):
-    title = models.CharField(max_length=255, unique=True)
-    authors = models.CharField(max_length=255)
+    title = models.TextField(unique=True)
+    authors = models.TextField()
     magazine = models.CharField(max_length=255)
     year = models.CharField(max_length=255)
     doi = models.CharField(max_length=255, blank=True, null=True)
