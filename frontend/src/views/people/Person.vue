@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div style="text-align: justify; margin-top: 55px;" v-html="person.contentMD"></div>
+            <div class="md-content" v-html="person.contentMD"></div>
         </template>
         <template v-else>
             <span style="font-size: 20px;">
@@ -264,4 +264,12 @@ onMounted(() => {
     }
 }
 
+.md-content {
+	text-align: justify;
+	&:deep(p) {
+		hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+	}
+}
 </style>
