@@ -54,7 +54,7 @@ const getResearchFields = async () => {
             console.log(error)
         })
 
-    paramStore.isLoading = true
+    paramStore.isLoading = false
 }
 
 onMounted(() => {
