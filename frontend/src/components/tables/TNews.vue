@@ -32,9 +32,9 @@
         <tbody>
             <tr v-for="news in sortedNews" v-bind:key="news.slug">
                 <td>{{ news.title }}</td>
-                <td>{{ news.author.username }}</td>
+                <td>{{ news.author[0].username }}</td>
                 <td>{{ formatDate(news.created_at) }}</td>
-                <td>{{ news.author_update.username }}</td>
+                <td>{{ news.author_update[0].username }}</td>
                 <td>{{ formatDate(news.updated_at) }}</td>
                 <td>
                     <abbr style="cursor: pointer;" title="Delete">
