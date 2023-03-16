@@ -182,11 +182,7 @@ const sortedNews = computed(() => {
     _news = hasFilter(_news, filter)
 
     return _news.sort((a,b) => {
-        let modifier = 1;
-        if(currentSortDir.value === 'desc') modifier = -1;
-        if(a[currentSort.value] < b[currentSort.value]) return -1 * modifier;
-        if(a[currentSort.value] > b[currentSort.value]) return 1 * modifier;
-        return 0;
+        return new Date(b.publicated_at).getTime() - new Date(a.publicated_at).getTime()
     }).filter((row, index) => {
         let start = (currentPage.value-1)*pageSize.value;
         let end = currentPage.value*pageSize.value;
