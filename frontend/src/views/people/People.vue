@@ -24,6 +24,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { marked } from 'marked';
 
 import { useParamStore } from '@/stores/ParamStore'
 
@@ -50,12 +51,12 @@ const getPeople = async () => {
                 } else {
                     people.value[i].pic = '/media/website/people/pic_default.png'
                 }
-            }
 
-            if (people.value[i].role != null) {
+                if (people.value[i].role != null) {
                     people.value[i].roleMD = marked(people.value[i].role)
                 } else {
                     people.value[i].roleMD = ''
+                }
             }
             people.value = people.value.filter(a => a.show_in_page === true).sort((a, b) => { return a.position - b.position })
             // console.log(people.value)
