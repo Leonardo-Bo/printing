@@ -6,7 +6,7 @@
         <form @submit.prevent="editPerson">
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group mb-3">
                         <label class="mb-1">Name*</label>
                         <input
@@ -17,7 +17,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group mb-3">
                         <label class="mb-1">Email*</label>
                         <input
@@ -27,7 +27,9 @@
                             v-model="person_copy.email">
                     </div>
                 </div>
+            </div>
 
+            <div class="row">
                 <div class="col-md-3">
                     <div class="form-group mb-3">
                         <label class="mb-1">Role*</label>
@@ -35,7 +37,18 @@
                             type="text"
                             class="form-control"
                             id="role"
-                            v-model="person_copy.role">
+                            v-model="role">
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="form-group mb-3">
+                        <label class="mb-1">Affiliation</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="role"
+                            v-model="affiliation">
                     </div>
                 </div>
 
@@ -182,6 +195,9 @@ const person = ref([])
 const person_copy = ref([])
 const show_in_page = ref("No")
 
+const role = ref('')
+const affiliation = ref('')
+
 const errors = ref([])
 
 
@@ -195,7 +211,9 @@ const getPerson = async () => {
         .get(`/api/v1/people/${personSlug}`)
         .then(response => {
             person.value = response.data
-            // console.log(person.value)
+            const role_affiliation = person.value.role.split('<br><small><em>')
+            role.value = role_affiliation[0]
+            affiliation.value = role_affiliation[1].slice(0, -13)
         })
         .catch(error =>{
             console.log(error)
@@ -256,6 +274,8 @@ const editPerson = async () => {
     if (show_in_page.value == "No") {
         person_copy.value.show_in_page = false
     }
+
+    person_copy.value.role = `${role.value}<br><small><em>${affiliation.value}</em></small>`
 
     errors.value = []
 

@@ -9,7 +9,7 @@
                     </div>
                     <div class="team-content">
                         <h4 class="name">{{ person.name }}</h4>
-                        <h5 class="title">{{ person.role }}</h5>
+                        <h5 class="title" v-html="person.roleMD"></h5>
                     </div>
                     <router-link :to="{ name: 'PersonDetail', params: { slug: person.slug }}" class="profile-link">
                         <strong>VIEW FULL PROFILE</strong>
@@ -50,6 +50,12 @@ const getPeople = async () => {
                 } else {
                     people.value[i].pic = '/media/website/people/pic_default.png'
                 }
+            }
+
+            if (people.value[i].role != null) {
+                    people.value[i].roleMD = marked(people.value[i].role)
+                } else {
+                    people.value[i].roleMD = ''
             }
             people.value = people.value.filter(a => a.show_in_page === true).sort((a, b) => { return a.position - b.position })
             // console.log(people.value)
