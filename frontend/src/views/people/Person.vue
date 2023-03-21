@@ -14,7 +14,7 @@
 
                     <div class="center col-lg-3">
                         <div class="profile-name">{{ person.name }}</div>
-                        <div class="profile-role">{{ person.role }}</div>
+                        <div class="profile-role" v-html="person.roleMD"></div>
                     </div>
 
                     <div class="col-lg-5 ccol">
@@ -107,6 +107,12 @@ const getPerson = async () => {
                 person.value.contentMD = marked(person.value.content)
             } else {
                 person.value.contentMD = ''
+            }
+
+            if (person.value.role != null) {
+                person.value.roleMD = marked(person.value.role)
+            } else {
+                person.value.roleMD = ''
             }
 
             if (person.value.pic_person.length > 0) {
