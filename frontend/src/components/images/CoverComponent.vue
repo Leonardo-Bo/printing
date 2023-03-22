@@ -29,6 +29,7 @@
                                 :cropBoxResizable=false
                                 preview=".cover-preview"
                                 :dragMode="'none'"
+                                :img-style="{ width: '350px', height: '350px' }"
                             />
                         </span>
                     </div>
