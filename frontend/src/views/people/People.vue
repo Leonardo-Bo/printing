@@ -88,8 +88,8 @@ onMounted(() => {
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 20px;
-    height: 250px;
+    margin-bottom: 10px;
+    height: 300px;
 }
 
 .our-team {
@@ -99,6 +99,7 @@ onMounted(() => {
     text-align: center;
     overflow: hidden;
     position: relative;
+    height: 300px;
 }
 
 .our-team .picture {
