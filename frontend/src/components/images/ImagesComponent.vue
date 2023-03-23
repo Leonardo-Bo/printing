@@ -51,7 +51,7 @@ import axios from 'axios'
 import { useParamStore } from '@/stores/ParamStore'
 import { createToast } from "mosha-vue-toastify"
 
-import { getFileName, getFileSize } from '@/composables/handleFiles'
+import { getFileName, getFileSize, getCopyImage } from '@/composables/handleFiles'
 
 const paramStore = useParamStore()
 
@@ -107,6 +107,14 @@ const uploadImages = async () => {
     }
 
     inputImages.value.value = ''
+}
+
+const copyImage = (str) => {
+    getCopyImage(str)
+    createToast(
+        'image copied to clipboard', 
+        paramStore.toastSuccess
+    )
 }
 
 const deleteImage = async (image) => {
